@@ -5,5 +5,14 @@
 #include <unistd.h>
 #include <stddef.h>
 #include <string.h>
+#include <stdlib.h>
+#include <sys/wait.h>
+
+int init_prompt(void);
+int read_cmd(char *cmd, char **args);
+int summon_tokens(char *cmd, char **args, int num_chars);
+int free_cmd_args(char *cmd, char **args, int free_index);
+
+char *_strcpy(char *dest, char *src);
 
 #endif
