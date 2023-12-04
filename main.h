@@ -9,13 +9,19 @@
 #include <sys/wait.h>
 
 int init_prompt(void);
-int read_cmd(char **cmd, char **args);
+int read_cmd(char **cmd, char **args, char**path, char **pths, int path_index);
 int summon_tokens(char *cmd, char **args, int num_chars);
 int free_cmd_args(char **cmd, char **args, int free_index);
-int command_check(char *cmd);
+int pathfinder(char **path, char **environ);
+int token_paths(char *path, char **pths);
+int command_check(char **cmd, char **path, char **pths, int path_index);
+int arg_zero_slash_check(char *argzero);
+int if_command_exist(char *argzero);
+int if_path_command_exist(char **pths, char *argzero);
 
 char *_strcpy(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
 int _strlen_recursion(char *s);
+char *str_concat(char *s1, char *s2);
 
 #endif
