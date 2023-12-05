@@ -3,12 +3,14 @@
 int token_paths(char *path, char **pths)
 {
 	char *token;
+	char *pathdup;
 	int i, j;
 
 	i = 0;
-	token = strtok(path, "=:");
-	while ((token = strtok(NULL, "=:")) != NULL)
+	pathdup = path;
+	while ((token = strtok(pathdup, "=:")) != NULL)
 	{
+		pathdup = NULL;
 		pths[i] = malloc(sizeof(char) * (_strlen_recursion(token) + 2));
 		if (pths[i] == NULL)
 			return(-1);
