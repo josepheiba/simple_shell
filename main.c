@@ -3,31 +3,21 @@
 
 int main(void)
 {
-	char *cmd;
-	char *args[512];
-	char *path;
-	char *pths[512];
-	int process_id;
-	int args_index;
-	int path_index, true_path_index;
+	char *cmd, *path, *tmp, *args[512], *pths[512];
+	int process_id, args_index, path_index, true_path_index, status;
 	extern char **environ;
-	char *tmp;
 
 	path = NULL;
-        path_index = 0;
 	pathfinder(&path, environ);
         if (path != NULL)
 	        path_index = token_paths(path, pths);
-
 	while (1)
 	{
 		cmd = NULL;
 		init_prompt();
 		args_index = read_cmd(&cmd, args, &path, pths, path_index);
-
 		if (args[0] == NULL)
 			continue;
-
 		if (arg_zero_slash_check(args[0]))
 		{
 			if (!if_command_exist(args[0]))
@@ -55,17 +45,15 @@ int main(void)
 				free(tmp);
 			}
 		}
-
 		process_id = fork();
 		if (process_id != 0)
 		{
-			wait(NULL);
+			wait(&status);
 			free_cmd_args(&cmd, args, args_index);
+			error_check(status);
 		}
 		else
-		{
 			execve(args[0], args, environ);
-		}
 	}
-	return (0);
+	return (2);
 }
