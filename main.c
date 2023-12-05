@@ -37,7 +37,8 @@ int main(void)
 		{
 			if (!(true_path_index = if_path_command_exist(pths, args[0])))
 			{
-                                not_found(args[0]);
+				if (pths[0] == NULL)
+					not_found(args[0]);
 				free_cmd_args(&cmd, args, args_index);
 				continue;
 			}
