@@ -11,7 +11,7 @@ int summon_tokens(char *cmd, char **args, int num_chars)
 	while ((token = strtok(cmdup, " \n")) != NULL)
 	{
 		cmdup = NULL;
-		args[i] = malloc(sizeof(token));
+		args[i] = malloc(sizeof(char) * (_strlen_recursion(token) + 1));
 		if (args[i] == NULL)
 			return(-1);
 		_strcpy(args[i], token);
