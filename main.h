@@ -18,6 +18,7 @@ int command_check(char **cmd, char **path, char **pths, int path_index);
 int arg_zero_slash_check(char *argzero);
 int if_command_exist(char *argzero);
 int if_path_command_exist(char **pths, char *argzero);
+int not_found(char *argzero);
 
 char *_strcpy(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
