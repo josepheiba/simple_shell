@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 
 int main(void)
 {
@@ -13,8 +14,10 @@ int main(void)
 	char *tmp;
 
 	path = NULL;
+        path_index = 0;
 	pathfinder(&path, environ);
-	path_index = token_paths(path, pths);
+        if (path != NULL)
+	        path_index = token_paths(path, pths);
 
 	while (1)
 	{
@@ -22,7 +25,7 @@ int main(void)
 		init_prompt();
 		args_index = read_cmd(&cmd, args, &path, pths, path_index);
 
-		if (arg_zero_slash_check(args[0]))
+		if (arg_zero_slash_check(args[0]) || path == NULL)
 		{
 			if (!if_command_exist(args[0]))
 			{
