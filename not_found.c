@@ -6,9 +6,9 @@ int not_found(char *argzero, char **cmd, char **args, char **path, char **pths, 
         char *error_notfound = ": not found\n";
 	int i, j;
 
-        write(2, error_start, _strlen_recursion(error_start));
-        write(2, argzero, _strlen_recursion(argzero));
-        write(2, error_notfound, _strlen_recursion(error_notfound));
+	write(STDERR_FILENO, error_start, _strlen_recursion(error_start));
+	write(STDERR_FILENO, argzero, _strlen_recursion(argzero));
+	write(STDERR_FILENO, error_notfound, _strlen_recursion(error_notfound));
 
 	for (i = 0; args[i] != NULL; i++)
 		free(args[i]);

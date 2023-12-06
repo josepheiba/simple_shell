@@ -2,25 +2,28 @@
 
 int read_cmd(char **cmd, char **args, char**path, char **pths, int path_index, char **environ)
 {
-	ssize_t num_chars;
-	size_t num;
+	size_t len;
 
-	num_chars = getline(cmd, &num, stdin);
+	getline(cmd, &len, stdin);
 
 	if (command_check(cmd, path, pths, path_index, environ) == -1)
 		return (-1);
 
-	return(summon_tokens(*cmd, args, num_chars));
+	return(summon_tokens(*cmd, args));
 }
 
 int _getline(char **cmd)
 {
+	int i;
 	char *c = (char *)malloc((sizeof(char) * 10000000));
+	if (c == NULL)
+		return (0);
+
+	for (i = 0; i < 10000000; i++)
+		c[i] = '\0';
 	
 	read(STDIN_FILENO, c, 10000000);
-	*cmd = malloc(sizeof(char) * (_strlen_recursion(c) + 1));
-	_strcpy(*cmd, c);
-
-	free(c);
+	
+	*cmd = c;
 	return (0);
 }

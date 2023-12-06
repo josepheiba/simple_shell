@@ -7,7 +7,7 @@ int main(void)
 	int process_id, args_index, path_index, true_path_index, status;
 	extern char **environ;
 
-	path = NULL;
+	path = args[0] = NULL;
 	pathfinder(&path, environ);
         if (path != NULL)
 	        path_index = token_paths(path, pths);
@@ -17,13 +17,17 @@ int main(void)
 		init_prompt();
 		args_index = read_cmd(&cmd, args, &path, pths, path_index, environ);
 		
-		if (args[0] == NULL)
-			continue;
 		if (args_index == -1)
 		{
 			free_cmd_args(&cmd, args, args_index);
 			continue;
 		}
+		if (args[0] == NULL)
+		{
+			free(cmd);
+			continue;
+		}
+		exit_check(&cmd, args, &path, pths, args_index, path_index);
 		if (arg_zero_slash_check(args[0]))
 		{
 			if (!if_command_exist(args[0]))

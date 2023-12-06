@@ -21,7 +21,8 @@ int if_path_command_exist(char **pths, char *argzero);
 int not_found(char *argzero, char **cmd, char **args, char **path, char **pths, int path_index);
 int error_check(int status);
 int _getline(char **cmd);
-int summon_tokens(char *cmd, char **args, int num_chars);
+int summon_tokens(char *cmd, char **args);
+int exit_check(char **cmd, char **args, char **path, char **pths, int args_index, int path_index);
 
 char *_strcpy(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
