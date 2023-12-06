@@ -15,9 +15,15 @@ int main(void)
 	{
 		cmd = NULL;
 		init_prompt();
-		args_index = read_cmd(&cmd, args, &path, pths, path_index);
+		args_index = read_cmd(&cmd, args, &path, pths, path_index, environ);
+		
 		if (args[0] == NULL)
 			continue;
+		if (args_index == -1)
+		{
+			free_cmd_args(&cmd, args, args_index);
+			continue;
+		}
 		if (arg_zero_slash_check(args[0]))
 		{
 			if (!if_command_exist(args[0]))
@@ -27,13 +33,16 @@ int main(void)
 			}
 		}
 		else if (path == NULL)
-			not_found(args[0]);
+		{
+			not_found(args[0], &cmd, args, &path, pths, path_index);
+			continue;
+		}
 		else
 		{
 			if (!(true_path_index = if_path_command_exist(pths, args[0])))
 			{
 				if (pths[0] == NULL || 1)
-					not_found(args[0]);
+					not_found(args[0], &cmd, args, &path, pths, path_index);
 				free_cmd_args(&cmd, args, args_index);
 				continue;
 			}
@@ -55,5 +64,5 @@ int main(void)
 		else
 			execve(args[0], args, environ);
 	}
-	return (2);
+	return (0);
 }
