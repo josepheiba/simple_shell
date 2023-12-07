@@ -27,7 +27,7 @@ int main(void)
 			free(cmd);
 			continue;
 		}
-		exit_check(&cmd, args, &path, pths, args_index, path_index);
+		builtin_check(&cmd, args, &path, pths, args_index, path_index);
 		if (arg_zero_slash_check(args[0]))
 		{
 			if (!if_command_exist(args[0]))
