@@ -27,7 +27,11 @@ int main(void)
 			free(cmd);
 			continue;
 		}
-		builtin_check(&cmd, args, &path, pths, args_index, path_index);
+		if(builtin_check(&cmd, args, &path, pths, args_index, path_index))
+		{
+			free_cmd_args(&cmd, args, args_index);
+			continue;
+		}
 		if (arg_zero_slash_check(args[0]))
 		{
 			if (!if_command_exist(args[0]))
