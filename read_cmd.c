@@ -7,7 +7,7 @@ int read_cmd(char **cmd, char **args, char**path, char **pths, int path_index, c
 	getline(cmd, &len, stdin);
 
 	if (command_check(cmd, path, pths, path_index, myenviron) == -1)
-		return (-1);
+		return (-2);
 
 	return(summon_tokens(*cmd, args));
 }
