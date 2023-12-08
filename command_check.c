@@ -2,9 +2,9 @@
 
 int command_check(char **cmd, char **path, char **pths, int path_index, char **environ)
 {
-	int i, j, index;
-	char *commands[] = {"exit\n", "env\n", NULL};
-	char end = '\n';
+	int i, j;
+	char *commands[] = {"exit\n", NULL};
+	(void) environ;
 
 	i = 0;
 	while(commands[i] != NULL)
@@ -18,15 +18,6 @@ int command_check(char **cmd, char **path, char **pths, int path_index, char **e
 				free(*path);
 				free(*cmd);
 				_exit(0);
-			}
-			else if (i == 1)
-			{
-				for (index = 0; environ[index] != NULL; index++)
-				{
-					write(1, environ[index], _strlen_recursion(environ[index]));
-					write(1, &end, 1);
-				}
-				return (-1);
 			}
 		}
 		i++;

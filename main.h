@@ -22,8 +22,9 @@ int not_found(char *argzero, char **cmd, char **args, char **path, char **pths, 
 int error_check(int status);
 int _getline(char **cmd);
 int summon_tokens(char *cmd, char **args);
-int exit_check(char **cmd, char **args, char **path, char **pths, int args_index, int path_index);
-int builtin_check(char **cmd, char **args, char **path, char **pths, int args_index, int path_index);
+int exit_check(char **cmd, char **args, char **path, char **pths, int args_index, int path_index, char **environ);
+int env_check(char **cmd, char **args, char **path, char **pths, int args_index, int path_index, char **environ);
+int builtin_check(char **cmd, char **args, char **path, char **pths, int args_index, int path_index, char **environ);
 
 char *_strcpy(char *dest, char *src);
 int _strcmp(char *s1, char *s2);

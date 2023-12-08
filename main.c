@@ -27,7 +27,7 @@ int main(void)
 			free(cmd);
 			continue;
 		}
-		if(builtin_check(&cmd, args, &path, pths, args_index, path_index))
+		if(builtin_check(&cmd, args, &path, pths, args_index, path_index, environ))
 		{
 			free_cmd_args(&cmd, args, args_index);
 			continue;

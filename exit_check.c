@@ -1,6 +1,6 @@
 #include "main.h"
 
-int exit_check(char **cmd, char **args, char **path, char **pths, int args_index, int path_index)
+int exit_check(char **cmd, char **args, char **path, char **pths, int args_index, int path_index, char **environ)
 {
 	int i, j, k;
 	int code;
@@ -8,6 +8,7 @@ int exit_check(char **cmd, char **args, char **path, char **pths, int args_index
 	char *error_start = "./hsh: 1: exit: Illegal number: ";
 	char end = '\n';
 	char string[100];
+	(void) environ;
 
 	i = 0;
 	while(commands[i] != NULL)
