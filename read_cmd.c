@@ -12,10 +12,11 @@ int read_cmd(char **cmd, char **args, char**path, char **pths, int path_index, c
 	return(summon_tokens(*cmd, args));
 }
 
-int _getline(char **cmd)
+int _getline(char **cmd, size_t *len)
 {
 	int i;
 	char *c = (char *)malloc((sizeof(char) * 10000000));
+	(void) len;
 	if (c == NULL)
 		return (0);
 
