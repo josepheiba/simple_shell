@@ -9,7 +9,7 @@ int command_check(char **cmd, char **path, char **pths, int path_index, char **e
 	i = 0;
 	while(commands[i] != NULL)
 	{
-		if(_strcmp(*cmd, commands[i]) == 0)
+		if(_strcmp(*cmd, commands[i]) == 0 && commands[i + 1] == NULL)
 		{
 			if (i == 0)
 			{

@@ -7,7 +7,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include <sys/wait.h>
-#include <errno.h>
 
 int init_prompt(void);
 int read_cmd(char **cmd, char **args, char**path, char **pths, int path_index, char **environ);
@@ -24,6 +23,7 @@ int _getline(char **cmd);
 int summon_tokens(char *cmd, char **args);
 int exit_check(char **cmd, char **args, char **path, char **pths, int args_index, int path_index, char **environ);
 int env_check(char **cmd, char **args, char **path, char **pths, int args_index, int path_index, char **environ);
+int setenv_check(char **cmd, char **args, char **path, char **pths, int args_index, int path_index, char **environ);
 int builtin_check(char **cmd, char **args, char **path, char **pths, int args_index, int path_index, char **environ);
 
 char *_strcpy(char *dest, char *src);

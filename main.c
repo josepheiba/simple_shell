@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdio.h>
 
 int main(void)
 {
@@ -27,7 +26,7 @@ int main(void)
 			free(cmd);
 			continue;
 		}
-		if(builtin_check(&cmd, args, &path, pths, args_index, path_index, environ))
+		if (builtin_check(&cmd, args, &path, pths, args_index, path_index, environ))
 		{
 			free_cmd_args(&cmd, args, args_index);
 			continue;
