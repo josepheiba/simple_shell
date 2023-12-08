@@ -1,12 +1,12 @@
 #include "main.h"
 
-int read_cmd(char **cmd, char **args, char**path, char **pths, int path_index, char **environ)
+int read_cmd(char **cmd, char **args, char**path, char **pths, int path_index, char **myenviron)
 {
 	size_t len;
 
 	getline(cmd, &len, stdin);
 
-	if (command_check(cmd, path, pths, path_index, environ) == -1)
+	if (command_check(cmd, path, pths, path_index, myenviron) == -1)
 		return (-1);
 
 	return(summon_tokens(*cmd, args));

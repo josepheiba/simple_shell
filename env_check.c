@@ -1,6 +1,6 @@
 #include "main.h"
 
-int env_check(char **cmd, char **args, char **path, char **pths, int args_index, int path_index, char **environ)
+int env_check(char **cmd, char **args, char **path, char **pths, int args_index, int path_index, char **myenviron)
 {
 	int i, index;
 	char *commands[] = {"env\n", NULL};
@@ -16,9 +16,9 @@ int env_check(char **cmd, char **args, char **path, char **pths, int args_index,
 	{
 		if(_strcmp(args[0], commands[i]) == 0)
 		{
-			for (index = 0; environ[index] != NULL; index++)
+			for (index = 0; myenviron[index] != NULL; index++)
 			{
-				write(1, environ[index], _strlen_recursion(environ[index]));
+				write(1, myenviron[index], _strlen_recursion(myenviron[index]));
 				write(1, &end, 1);
 			}
 			return(1);

@@ -2,10 +2,10 @@
 
 int main(void)
 {
-	char *cmd, *path, *tmp, *args[512], *pths[512];
+	char *cmd, *path, *tmp, *args[512], *pths[512], *myenviron[512];
 	int process_id, args_index, path_index, true_path_index, status;
-	extern char **environ;
 
+	environcpy(myenviron);
 	path = args[0] = NULL;
 	pathfinder(&path, environ);
         if (path != NULL)
@@ -14,7 +14,7 @@ int main(void)
 	{
 		cmd = NULL;
 		init_prompt();
-		args_index = read_cmd(&cmd, args, &path, pths, path_index, environ);
+		args_index = read_cmd(&cmd, args, &path, pths, path_index, myenviron);
 		
 		if (args_index == -1)
 		{
@@ -26,7 +26,7 @@ int main(void)
 			free(cmd);
 			continue;
 		}
-		if (builtin_check(&cmd, args, &path, pths, args_index, path_index, environ))
+		if (builtin_check(&cmd, args, &path, pths, args_index, path_index, myenviron))
 		{
 			free_cmd_args(&cmd, args, args_index);
 			continue;

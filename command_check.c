@@ -1,10 +1,9 @@
 #include "main.h"
 
-int command_check(char **cmd, char **path, char **pths, int path_index, char **environ)
+int command_check(char **cmd, char **path, char **pths, int path_index, char **myenviron)
 {
-	int i, j;
+	int i, j, k;
 	char *commands[] = {"exit\n", NULL};
-	(void) environ;
 
 	i = 0;
 	while(commands[i] != NULL)
@@ -15,6 +14,8 @@ int command_check(char **cmd, char **path, char **pths, int path_index, char **e
 			{
 				for (j = 0; j < path_index; j++)
 					free(pths[j]);
+				for (k = 0; myenviron[k] != NULL; k++)
+					free(myenviron[k]);
 				free(*path);
 				free(*cmd);
 				_exit(0);
