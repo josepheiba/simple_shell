@@ -17,10 +17,7 @@ int summon_tokens(char *cmd, char **args)
 		_strcpy(args[i], token);
 		i++;
 	}
-        if (i != 0)
-        {
-		args[i] = NULL;
-        }
+	args[i] = NULL;
 
 	return(i);
 }

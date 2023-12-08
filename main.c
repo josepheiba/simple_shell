@@ -16,11 +16,6 @@ int main(void)
 		init_prompt();
 		args_index = read_cmd(&cmd, args, &path, pths, path_index, myenviron);
 		
-		if (args_index == -1)
-		{
-			free_cmd_args(&cmd, args, args_index);
-			continue;
-		}
 		if (args[0] == NULL)
 		{
 			free(cmd);
