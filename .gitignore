@@ -1,2 +1,4 @@
 *.bash
+TEST_SUITE
+vgcore.*
 hsh
