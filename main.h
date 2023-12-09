@@ -13,7 +13,7 @@ extern char **environ;
 void environcpy(char **myenviron);
 
 int init_prompt(void);
-int read_cmd(char **cmd, char **args, char**path, char **pths, int path_index, char **myenviron);
+int read_cmd(char **cmd, char **args);
 int command_check(char **cmd, char **path, char **pths, int path_index, char **myenviron);
 int free_cmd_args(char **cmd, char **args, int free_index);
 int pathfinder(char **path, char **environ);

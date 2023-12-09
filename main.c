@@ -14,7 +14,7 @@ int main(void)
 	{
 		cmd = NULL;
 		init_prompt();
-		args_index = read_cmd(&cmd, args, &path, pths, path_index, myenviron);
+		args_index = read_cmd(&cmd, args);
 		
 		if (args[0] == NULL)
 		{
