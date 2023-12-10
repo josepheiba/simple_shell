@@ -14,5 +14,8 @@ int builtin_check(char **cmd, char **args, char **path, char **pths, int args_in
 	if (unsetenv_check(cmd, args, path, pths, args_index, path_index, myenviron))
 		return (1);
 
+	if (cd_check(cmd, args, path, pths, args_index, path_index, myenviron))
+		return (1);
+
 	return (0);
 }

@@ -64,7 +64,9 @@ int main(void)
 			error_check(status);
 		}
 		else
+		{
 			execve(args[0], args, environ);
+		}
 	}
 	return (0);
 }

@@ -8,7 +8,7 @@ int if_path_command_exist(char **pths, char *argzero)
 	for (i = 0; pths[i] != NULL; i++)
 	{
 		path_argzero = str_concat(pths[i], argzero);
-		if (access(path_argzero, F_OK) == 0)
+		if (access(path_argzero, X_OK) == 0)
 		{
 			free(path_argzero);
 			return (i);

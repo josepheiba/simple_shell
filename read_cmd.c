@@ -4,7 +4,7 @@ int read_cmd(char **cmd, char **args)
 {
 	size_t len;
 
-	if (getline(cmd, &len, stdin) == -1)
+	if (_getline(cmd, &len) == -1)
 		exit(0);
 
 	/*
@@ -17,31 +17,27 @@ int read_cmd(char **cmd, char **args)
 
 int _getline(char **cmd, size_t *len)
 {
-	size_t buffer_size;
-	ssize_t bytes_read;
-	int i;
-	char *c = NULL;
-
-	buffer_size = 1;
-
+	int i, n;
+	char *string;
+	(void) len;	
+	
+	string = malloc(sizeof(char) * INT_MAX);
+	
 	i = 0;
 	while (1)
 	{
-		c = realloc(c, (sizeof(char) * (i + 1)));
-		if (c == NULL)
-			return (0);
-		bytes_read = read(STDIN_FILENO, &c[i], buffer_size);
-		if (bytes_read == -1)
+		n = read(0, string + i, 1);
+		if (n == 0)
 		{
-			free(&c[i]);
 			return (-1);
 		}
-		if (c[i] == '\n')
-			break;
+		else
+		{
+			if (*(string + i) == '\n')
+				break;
+		}
 		i++;
 	}
-	*len = i;
-	
-	*cmd = c;
-	return (i);
+	*cmd = string;
+	return (0);
 }
