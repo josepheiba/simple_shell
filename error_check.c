@@ -1,5 +1,10 @@
 #include "main.h"
 
+/**
+ * error_check - check code.
+ * Return: check declaration
+ */
+
 int error_check(void)
 {
 	if(status == 512)
