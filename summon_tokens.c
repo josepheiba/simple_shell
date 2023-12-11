@@ -7,9 +7,12 @@ int summon_tokens(char *cmd, char **args)
 	int i;
 
 	i = 0;
-	cmdup = strtok(cmd, "#");
+
+	cmdup = cmd;
 	while ((token = strtok(cmdup, " \n;")) != NULL)
 	{
+		if (token[0] == '#')
+			break;
 		cmdup = NULL;
 		args[i] = malloc(sizeof(char) * (_strlen_recursion(token) + 1));
 		if (args[i] == NULL)
