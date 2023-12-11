@@ -1,5 +1,12 @@
 #include "main.h"
 
+/**
+ * arg_zero_slash_check - check code.
+ * argzero : variable
+ * Return: check declaration
+ */
+
+
 int arg_zero_slash_check(char *argzero)
 {
 	int i;
