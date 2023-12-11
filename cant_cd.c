@@ -1,5 +1,11 @@
 #include "main.h"
 
+/**
+ * cant_cd - check code.
+ * foldername : variable
+ * Return: check declaration
+ */
+
 int cant_cd(char *foldername)
 {
         char *error_start = "./hsh: 1: ";
