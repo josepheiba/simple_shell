@@ -1,5 +1,11 @@
 #include "main.h"
 
+/**
+ * environcpy - check code.
+ * myenviron : variable
+ * Return: check declaration
+ */
+
 void environcpy(char **myenviron)
 {
 	int i;
