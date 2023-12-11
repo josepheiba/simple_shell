@@ -1,5 +1,18 @@
 #include "main.h"
 
+/**
+ * cd_check - check code.
+ * argzero : variable
+ * cmd : variable
+ * path : variable
+ * path : variable
+ * pths : variable
+ * args_index : variable
+ * path_index : variable
+ * myenviron : variable
+ * Return: check declaration
+ */
+
 int cd_check(char **cmd, char **args, char **path, char **pths, int args_index, int path_index, char **myenviron)
 {
 	int i, oldpwdindex;
