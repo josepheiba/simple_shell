@@ -2,7 +2,6 @@
 
 /**
  * cd_check - check code.
- * argzero : variable
  * cmd : variable
  * path : variable
  * path : variable
