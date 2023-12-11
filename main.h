@@ -9,6 +9,8 @@
 #include <sys/wait.h>
 #include <errno.h>
 #include <limits.h>
+#include <elf.h>
+#include <fcntl.h>
 
 int status;
 
@@ -17,7 +19,7 @@ extern char **environ;
 void environcpy(char **myenviron);
 
 int init_prompt(void);
-int read_cmd(char **cmd, char **args);
+int read_cmd(char **cmd, char **args, int file, int fd);
 int command_check(char **cmd, char **path, char **pths, int path_index, char **myenviron);
 int free_cmd_args(char **cmd, char **args, int free_index);
 int pathfinder(char **path, char **environ);
@@ -30,7 +32,7 @@ int if_path_command_exist(char **pths, char *argzero);
 int not_found(char *argzero, char **cmd, char **args, char **path, char **pths, int path_index);
 int error_check(void);
 int cant_cd(char *foldername);
-int _getline(char **cmd, size_t *len);
+int _getline(char **cmd, size_t *len, int file, int fd);
 int summon_tokens(char *cmd, char **args);
 int exit_check(char **cmd, char **args, char **path, char **pths, int args_index, int path_index, char **myenviron);
 int env_check(char **cmd, char **args, char **path, char **pths, int args_index, int path_index, char **myenviron);

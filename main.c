@@ -6,10 +6,26 @@
  */
 
 
-int main(void)
+int main(int argc, char**argv)
 {
 	char *cmd, *path, *tmp, *args[512], *pths[512], *myenviron[512];
-	int process_id, args_index, path_index, true_path_index;
+	int process_id, args_index, path_index, true_path_index, file, fd;
+        char *error_start = "./hsh: 0: Can't open ";
+        char *error_end = "\n";
+
+	file = argc - 1;
+	if (file == 1)
+	{
+		fd = open(argv[file], O_RDONLY);
+		if (fd == -1)
+		{
+			write(STDERR_FILENO, error_start, _strlen_recursion(error_start));
+			write(STDERR_FILENO, argv[file], _strlen_recursion(argv[file]));
+			write(STDERR_FILENO, error_end, _strlen_recursion(error_end));
+			status = 127;
+			return (-1);
+		}
+	}
 
 	environcpy(myenviron);
 	path = args[0] = NULL;
@@ -20,7 +36,7 @@ int main(void)
 	{
 		cmd = NULL;
 		init_prompt();
-		args_index = read_cmd(&cmd, args);
+		args_index = read_cmd(&cmd, args, file, fd);
 		
 		if (args[0] == NULL)
 		{
