@@ -1,5 +1,11 @@
 #include "main.h"
 
+/**
+ * main - check code.
+ * Return: check declaration
+ */
+
+
 int main(void)
 {
 	char *cmd, *path, *tmp, *args[512], *pths[512], *myenviron[512];
