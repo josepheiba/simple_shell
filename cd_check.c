@@ -3,21 +3,21 @@
 int cd_check(char **cmd, char **args, char **path, char **pths, int args_index, int path_index, char **myenviron)
 {
 	int i, oldpwdindex;
-	size_t cwdlen = 0;
 	char *commands[] = {"cd\n", NULL};
 	char *homepath = NULL;
 	char *oldpwdpath = NULL;
 	char *home = NULL;
 	char *oldpwd = NULL;
 	char *dash = "-";
-	char *cwd = NULL;
+	char *end = "\n";
+	char cwd[1024];
 	(void) cmd;
 	(void) path;
 	(void) pths;
 	(void) args_index;
 	(void) path_index;
 
-	cwd = getcwd(cwd, cwdlen);
+	getcwd(cwd, sizeof(cwd));
 
 	homefinder(&home, myenviron);
 	homepath = strtok(home, "HOME=");
@@ -33,10 +33,19 @@ int cd_check(char **cmd, char **args, char **path, char **pths, int args_index, 
 				oldpwdpath = strtok(oldpwd, "OLDPWD=");
 				write_oldcwd(cwd, oldpwdindex, myenviron);
 			}
+			else
+			{
+				write(STDOUT_FILENO, cwd, _strlen_recursion(cwd));
+				write(STDOUT_FILENO, end, _strlen_recursion(end));
+				return (1);
+			}
+
 			if (args[1] != NULL && _strcmp(args[1], dash) == 0)
 			{
 				
 				chdir(oldpwdpath);
+				write(STDOUT_FILENO, oldpwdpath, _strlen_recursion(oldpwdpath));
+				write(STDOUT_FILENO, end, _strlen_recursion(end));
 				free(home);
 				free(oldpwd);
 				return (1);
@@ -44,7 +53,8 @@ int cd_check(char **cmd, char **args, char **path, char **pths, int args_index, 
 			}
 			else if (args[1] != NULL)
 			{
-				chdir(args[1]);
+				if (chdir(args[1]) == -1)
+					cant_cd(args[1]);
 				free(home);
 				free(oldpwd);
 				return (1);
@@ -57,7 +67,7 @@ int cd_check(char **cmd, char **args, char **path, char **pths, int args_index, 
 				return (1);
 			}
 		}
-	i++;
+		i++;
 	}
 	free(home);
 	return(0);

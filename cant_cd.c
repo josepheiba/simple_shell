@@ -1,18 +1,15 @@
 #include "main.h"
 
-int not_found(char *argzero, char **cmd, char **args, char **path, char **pths, int path_index)
+int cant_cd(char *foldername)
 {
         char *error_start = "./hsh: 1: ";
-        char *error_notfound = ": not found\n";
-	(void) cmd;
-	(void) args;
-	(void) path;
-	(void) pths;
-	(void) path_index;
+        char *error_notfound = "cd: can't cd to ";
+        char *end = "\n";
 
 	write(STDERR_FILENO, error_start, _strlen_recursion(error_start));
-	write(STDERR_FILENO, argzero, _strlen_recursion(argzero));
 	write(STDERR_FILENO, error_notfound, _strlen_recursion(error_notfound));
+	write(STDERR_FILENO, foldername, _strlen_recursion(foldername));
+	write(STDERR_FILENO, end, _strlen_recursion(end));
 	 
 	/*
 	int i, j;
@@ -24,6 +21,6 @@ int not_found(char *argzero, char **cmd, char **args, char **path, char **pths, 
 	free(*path);
 	_exit(127);
 	*/
-	status = 127;
+	status = 0;
         return (0);
 }

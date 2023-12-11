@@ -10,6 +10,5 @@ int free_cmd_args(char **cmd, char **args, int free_index)
 		args[i] = NULL;
 	}
 	free(*cmd);
-	fflush(stdin);
 	return (0);
 }

@@ -31,7 +31,9 @@ int exit_check(char **cmd, char **args, char **path, char **pths, int args_index
 			for (l = 0; myenviron[l] != NULL; l++)
 				free(myenviron[l]);
 			if (arg_count == 0)
-				_exit(0);
+			{
+				_exit(status);
+			}
 			if (code <= 0)
 			{
 				write(2, error_start, _strlen_recursion(error_start));

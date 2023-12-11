@@ -3,7 +3,7 @@
 int main(void)
 {
 	char *cmd, *path, *tmp, *args[512], *pths[512], *myenviron[512];
-	int process_id, args_index, path_index, true_path_index, status;
+	int process_id, args_index, path_index, true_path_index;
 
 	environcpy(myenviron);
 	path = args[0] = NULL;
@@ -26,6 +26,7 @@ int main(void)
 			free_cmd_args(&cmd, args, args_index);
 			continue;
 		}
+		status = 0;
 		if (arg_zero_slash_check(args[0]))
 		{
 			if (!if_command_exist(args[0]))
@@ -61,12 +62,12 @@ int main(void)
 		{
 			wait(&status);
 			free_cmd_args(&cmd, args, args_index);
-			error_check(status);
+			error_check();
 		}
 		else
 		{
 			execve(args[0], args, environ);
 		}
 	}
-	return (0);
+	return (status);
 }

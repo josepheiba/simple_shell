@@ -1,10 +1,10 @@
 #include "main.h"
 
-int error_check(int status)
+int error_check(void)
 {
 	if(status == 512)
 	{
-		_exit(2);
+		status = 2;
 		return(-1);
 	}
 	return(0);

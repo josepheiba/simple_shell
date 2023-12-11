@@ -10,6 +10,8 @@
 #include <errno.h>
 #include <limits.h>
 
+int status;
+
 extern char **environ;
 
 void environcpy(char **myenviron);
@@ -26,7 +28,8 @@ int arg_zero_slash_check(char *argzero);
 int if_command_exist(char *argzero);
 int if_path_command_exist(char **pths, char *argzero);
 int not_found(char *argzero, char **cmd, char **args, char **path, char **pths, int path_index);
-int error_check(int status);
+int error_check(void);
+int cant_cd(char *foldername);
 int _getline(char **cmd, size_t *len);
 int summon_tokens(char *cmd, char **args);
 int exit_check(char **cmd, char **args, char **path, char **pths, int args_index, int path_index, char **myenviron);

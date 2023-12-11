@@ -5,7 +5,7 @@ int read_cmd(char **cmd, char **args)
 	size_t len;
 
 	if (_getline(cmd, &len) == -1)
-		exit(0);
+		exit(status);
 
 	/*
 	if (command_check(cmd, path, pths, path_index, myenviron) == -1)
@@ -18,11 +18,13 @@ int read_cmd(char **cmd, char **args)
 int _getline(char **cmd, size_t *len)
 {
 	int i, n;
-	char *string;
-	(void) len;	
+	char *string, *string2;
+	(void) len;
 	
-	string = malloc(sizeof(char) * INT_MAX);
-	
+	string = malloc(sizeof(char) * 10000000);
+	if (string == NULL)
+		return (-1);
+
 	i = 0;
 	while (1)
 	{
@@ -33,11 +35,22 @@ int _getline(char **cmd, size_t *len)
 		}
 		else
 		{
-			if (*(string + i) == '\n')
+			if (*(string + i) == '\n' || *(string + i) == ';')
+			{
+				*(string + i + 1) = '\0';
 				break;
+			}
 		}
 		i++;
 	}
-	*cmd = string;
+
+	string2 = malloc(sizeof(char) * (i + 2));
+	if (string == NULL)
+		return (-1);
+
+	_strcpy(string2, string);
+	free(string);
+
+	*cmd = string2;
 	return (0);
 }
