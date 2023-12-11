@@ -11,8 +11,7 @@ int main(int argc, char**argv)
 	char *cmd, *path, *tmp, *args[512], *pths[512], *myenviron[512];
 	int process_id, args_index, path_index, true_path_index, file, fd;
 
-	file = argc - 1;
-	if (file == 1)
+	if ((file = argc - 1) == 1)
 	{
 		fd = open(argv[file], O_RDONLY);
 		if (fd == -1)

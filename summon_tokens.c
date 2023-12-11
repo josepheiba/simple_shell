@@ -7,7 +7,7 @@ int summon_tokens(char *cmd, char **args)
 	int i;
 
 	i = 0;
-	cmdup = cmd;
+	cmdup = strtok(cmd, "#");
 	while ((token = strtok(cmdup, " \n;")) != NULL)
 	{
 		cmdup = NULL;
