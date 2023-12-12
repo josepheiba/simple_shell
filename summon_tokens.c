@@ -9,7 +9,7 @@ int summon_tokens(char *cmd, char **args)
 	i = 0;
 
 	cmdup = cmd;
-	while ((token = strtok(cmdup, " \n;&|")) != NULL)
+	while ((token = strtok(cmdup, " \n;")) != NULL)
 	{
 		if (token[0] == '#')
 			break;
