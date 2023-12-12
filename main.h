@@ -41,6 +41,9 @@ int setenv_check(char **cmd, char **args, char **path, char **pths, int args_ind
 int unsetenv_check(char **cmd, char **args, char **path, char **pths, int args_index, int path_index, char **myenviron);
 int builtin_check(char **cmd, char **args, char **path, char **pths, int args_index, int path_index, char **myenviron);
 int write_oldcwd(char *cwd, int oldpwdindex, char **myenviron);
+int dollar_replace(char **cmd);
+void rev_string(char *s);
+char *_itoa(int number);
 
 char *_strcpy(char *dest, char *src);
 int _strcmp(char *s1, char *s2);

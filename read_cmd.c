@@ -7,7 +7,84 @@ int read_cmd(char **cmd, char **args, int file, int fd, char *argvone)
 	if (_getline(cmd, &len, file, fd, argvone) == -1)
 		exit(status);
 
+	dollar_replace(cmd);
+
 	return(summon_tokens(*cmd, args));
+}
+
+int dollar_replace(char **cmd)
+{
+	int i, j;
+	char *token;
+	char *token2;
+	char *number;
+	char option;
+	char *final_cmd12;
+	char *final_cmd22;
+	pid_t ppiidd;
+
+	j = 0;
+	while (1)
+	{
+		if (cmd[0][j] == '$')
+			break;
+		if (cmd[0][j] == '\n')
+			return (0);
+		j++;
+	}
+
+	token = strtok(*cmd, "$");
+	i = _strlen_recursion(token);
+
+	option = cmd[0][i + 1]; 
+	cmd[0][i + 1] = '$';
+
+	token2 = strtok(NULL, "$");
+
+	if (option == '?')
+		number = _itoa(status);
+	else if (option == '$')
+	{
+		ppiidd = getpid();
+		number = _itoa(ppiidd);
+	}
+	else
+		return(0);
+
+	final_cmd12 = str_concat(token, number);
+	final_cmd22 = str_concat(final_cmd12, token2);
+
+	free(*cmd);
+	free(number);
+
+	free(final_cmd12);
+	*cmd = final_cmd22;
+	return(0);
+}
+
+char *_itoa(int number)
+{
+	int i, n;
+	char *string = malloc(sizeof(char) * 10);
+
+	if (number == 0)
+	{
+		*(string + 0) = '0';
+		*(string + 1) = '\0';
+		return (string);
+	}
+
+	i = 0;
+	while(number >= 1)
+	{
+		n = number % 10;
+		*(string + i) = n + '0';
+		number = number / 10;
+		i++;
+	}
+	*(string + i) = '\0';
+	rev_string(string);
+	return (string);
 }
 
 int _getline(char **cmd, size_t *len, int file, int fd, char *argvone)
