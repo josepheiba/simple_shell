@@ -124,6 +124,24 @@ int _getline(char **cmd, size_t *len, int file, int fd, char *argvone)
 				*(string + i + 1) = '\0';
 				break;
 			}
+			else if (*(string + i) == '&')
+			{
+				if (*(string + i + 1) == '&')
+				{
+					*(string + i + 1) = '\0';
+					andor = 1;
+					break;
+				}
+			}
+			else if (*(string + i) == '|')
+			{
+				if (*(string + i + 1) == '|')
+				{
+					*(string + i + 1) = '\0';
+					andor = 2;
+					break;
+				}
+			}
 		}
 		i++;
 	}

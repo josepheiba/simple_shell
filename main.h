@@ -13,6 +13,7 @@
 #include <fcntl.h>
 
 int status;
+int andor;
 
 extern char **environ;
 
