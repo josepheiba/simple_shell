@@ -28,7 +28,7 @@ int dollar_replace(char **cmd)
 	{
 		if (cmd[0][j] == '$')
 			break;
-		if (cmd[0][j] == '\n')
+		if (cmd[0][j] == '\n' || cmd[0][j] == ';')
 			return (0);
 		j++;
 	}
