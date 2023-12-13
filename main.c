@@ -23,14 +23,14 @@ int main(int argc, char **argv)
 	environcpy(myenviron);
 	path = args[0] = NULL;
 	pathfinder(&path, environ);
-        if (path != NULL)
+        
+	
+	path_index = token_paths(path, pths);
+	if (path_index == -1)
 	{
-	        path_index = token_paths(path, pths);
-		if (path_index == -1)
-		{
-			exit(status);
-		}
+		exit(status);
 	}
+
 	while (1)
 	{
 		cmd = NULL;

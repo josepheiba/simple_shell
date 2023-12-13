@@ -9,7 +9,6 @@
 #include <sys/wait.h>
 #include <errno.h>
 #include <limits.h>
-#include <elf.h>
 #include <fcntl.h>
 
 int status;
