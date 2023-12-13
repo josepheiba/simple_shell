@@ -35,6 +35,11 @@ int main(int argc, char **argv)
 	{
 		cmd = NULL;
 		args_index = read_cmd(&cmd, args, &path, pths, path_index, myenviron, file, fd, argv[file]);
+		if (args_index < 0)
+		{
+			free(cmd);
+			continue;
+		}
 		
 		if (args[0] == NULL)
 		{

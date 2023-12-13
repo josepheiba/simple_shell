@@ -2,13 +2,13 @@
 
 /**
  * cd_check - check code.
- * cmd : variable
- * path : variable
- * path : variable
- * pths : variable
- * args_index : variable
- * path_index : variable
- * myenviron : variable
+ * @cmd : variable
+ * @path : variable
+ * @path : variable
+ * @pths : variable
+ * @args_index : variable
+ * @path_index : variable
+ * @myenviron : variable
  * Return: check declaration
  */
 

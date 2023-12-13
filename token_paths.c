@@ -15,7 +15,7 @@ int token_paths(char *path, char **pths)
 		if (pths[i] == NULL)
 		{
 			for (k = 0; k < i; k++)
-				free(pths[i]);
+				free(pths[k]);
 			status = 2;
 			return(-1);
 		}
