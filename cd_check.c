@@ -56,8 +56,6 @@ int cd_check(char **cmd, char **args, char **path, char **pths, int args_index, 
 			{
 				
 				chdir(oldpwdpath);
-				write(STDOUT_FILENO, oldpwdpath, _strlen_recursion(oldpwdpath));
-				write(STDOUT_FILENO, end, _strlen_recursion(end));
 				free(home);
 				free(oldpwd);
 				return (1);
