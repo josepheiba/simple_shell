@@ -30,7 +30,7 @@ int main(int argc, char **argv)
 		exit(2);
 		*/
 
-	if (path != null)
+	if (path != NULL)
 	{
 		path_index = token_paths(path, pths);
 		if (path_index == -1)
