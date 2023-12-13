@@ -25,9 +25,12 @@ int main(int argc, char **argv)
 	if (pathfinder(&path, environ) == -1)
 		exit(2);
 	
+	/*
 	if (path == NULL)
 		exit(2);
-	else
+		*/
+
+	if (path != null)
 	{
 		path_index = token_paths(path, pths);
 		if (path_index == -1)
