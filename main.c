@@ -24,12 +24,17 @@ int main(int argc, char **argv)
 	path = args[0] = NULL;
 	pathfinder(&path, environ);
         if (path != NULL)
+	{
 	        path_index = token_paths(path, pths);
+		if (path_index == -1)
+		{
+			exit(status);
+		}
+	}
 	while (1)
 	{
 		cmd = NULL;
-		init_prompt();
-		args_index = read_cmd(&cmd, args, file, fd, argv[file]);
+		args_index = read_cmd(&cmd, args, &path, pths, path_index, myenviron, file, fd, argv[file]);
 		
 		if (args[0] == NULL)
 		{
@@ -58,7 +63,7 @@ int main(int argc, char **argv)
 		else
 		{
 			true_path_index = if_path_command_exist(pths, args[0]);
-			if (true_path_index)
+			if (true_path_index <= 0)
 			{
 				if (pths[0] == NULL || 1)
 					not_found(args[0], &cmd, args, &path, pths, path_index);
@@ -68,6 +73,11 @@ int main(int argc, char **argv)
 			else
 			{
 				tmp = str_concat(pths[true_path_index], args[0]);
+				if (tmp == NULL)
+				{
+					free_cmd_args(&cmd, args, args_index);
+					continue;
+				}
 				args[0] = realloc(args[0], sizeof(char) * (_strlen_recursion(tmp) + 1));
 				_strcpy(args[0], tmp);
 				free(tmp);

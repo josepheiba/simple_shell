@@ -4,7 +4,7 @@ int token_paths(char *path, char **pths)
 {
 	char *token;
 	char *pathdup;
-	int i, j;
+	int i, j, k;
 
 	i = 0;
 	pathdup = path;
@@ -13,7 +13,12 @@ int token_paths(char *path, char **pths)
 		pathdup = NULL;
 		pths[i] = malloc(sizeof(char) * (_strlen_recursion(token) + 2));
 		if (pths[i] == NULL)
+		{
+			for (k = 0; k < i; k++)
+				free(pths[i]);
+			status = 2;
 			return(-1);
+		}
 		_strcpy(pths[i], token);
 		j = 0;
 		while (pths[i][j] != '\0')

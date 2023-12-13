@@ -3,3 +3,7 @@ TEST_SUITE
 Simple-shell_test_cases
 vgcore.*
 hsh
+allowed_functions
+checker
+run
+tests

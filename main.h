@@ -20,7 +20,6 @@ extern char **environ;
 void environcpy(char **myenviron);
 
 int init_prompt(void);
-int read_cmd(char **cmd, char **args, int file, int fd, char *argvone);
 int command_check(char **cmd, char **path, char **pths, int path_index, char **myenviron);
 int free_cmd_args(char **cmd, char **args, int free_index);
 int pathfinder(char **path, char **environ);
@@ -46,6 +45,7 @@ int dollar_replace(char **cmd);
 void rev_string(char *s);
 char *_itoa(int number);
 void wait_free_error(char **cmd, char **args, int args_index);
+int read_cmd(char **cmd, char **args, char **path, char **pths, int path_index, char **myenviron, int file, int fd, char *argvone);
 
 char *_strcpy(char *dest, char *src);
 int _strcmp(char *s1, char *s2);

@@ -1,13 +1,34 @@
 #include "main.h"
 
-int read_cmd(char **cmd, char **args, int file, int fd, char *argvone)
+int read_cmd(char **cmd, char **args, char **path, char **pths, int path_index, char **myenviron, int file, int fd, char *argvone)
 {
+	int j, l;
 	size_t len;
+	(void) file;
+	(void) fd;
+	(void) argvone;
+	(void) pths;
+	(void) path;
+	(void) path_index;
+	(void) args;
+	(void) myenviron;
+	(void) j;
+	(void) l;
+
+	/*
+	if (getline(cmd, &len, stdin) == -1)
+		*/
 
 	if (_getline(cmd, &len, file, fd, argvone) == -1)
-		exit(status);
+	{
+		for (j = 0; j < path_index; j++)
+			free(pths[j]);
+		free(*path);
 
-	dollar_replace(cmd);
+		for (l = 0; myenviron[l] != NULL; l++)
+			free(myenviron[l]);
+		exit(status);
+	}
 
 	return(summon_tokens(*cmd, args));
 }
@@ -66,6 +87,8 @@ char *_itoa(int number)
 {
 	int i, n;
 	char *string = malloc(sizeof(char) * 10);
+	if (string == NULL)
+		return(NULL);
 
 	if (number == 0)
 	{
@@ -115,6 +138,7 @@ int _getline(char **cmd, size_t *len, int file, int fd, char *argvone)
 		n = read(fd, string + i, 1);
 		if (n == 0)
 		{
+			free(string);
 			return (-1);
 		}
 		else
