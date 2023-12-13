@@ -17,6 +17,8 @@ int pathfinder(char **path, char **environ)
 			if (patheq[j] == '\0')
 			{
 				*path = malloc(sizeof(char) * (_strlen_recursion(environ[i]) + 1));
+				if (*path == NULL)
+					return (-1);
 				_strcpy(*path, environ[i]);
 				return (0);
 			}
