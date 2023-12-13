@@ -45,6 +45,7 @@ int write_oldcwd(char *cwd, int oldpwdindex, char **myenviron);
 int dollar_replace(char **cmd);
 void rev_string(char *s);
 char *_itoa(int number);
+void wait_free_error(char **cmd, char **args, int args_index);
 
 char *_strcpy(char *dest, char *src);
 int _strcmp(char *s1, char *s2);

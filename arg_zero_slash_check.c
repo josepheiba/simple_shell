@@ -2,10 +2,9 @@
 
 /**
  * arg_zero_slash_check - check code.
- * argzero : variable
+ * @argzero: variable
  * Return: check declaration
  */
-
 
 int arg_zero_slash_check(char *argzero)
 {
@@ -13,7 +12,7 @@ int arg_zero_slash_check(char *argzero)
 
 	for (i = 0; argzero[i] != '\0'; i++)
 	{
-		if(argzero[i] == '/' && argzero[i + 1] != '\0')
+		if (argzero[i] == '/' && argzero[i + 1] != '\0')
 		{
 			return (1);
 		}

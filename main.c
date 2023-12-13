@@ -2,11 +2,13 @@
 
 /**
  * main - check code.
+ * argc: variable
+ * argv: variable
  * Return: check declaration
  */
 
 
-int main(int argc, char**argv)
+int main(int argc, char **argv)
 {
 	char *cmd, *path, *tmp, *args[512], *pths[512], *myenviron[512];
 	int process_id, args_index, path_index, true_path_index, file, fd;
@@ -55,7 +57,8 @@ int main(int argc, char**argv)
 		}
 		else
 		{
-			if (!(true_path_index = if_path_command_exist(pths, args[0])))
+			true_path_index = if_path_command_exist(pths, args[0]);
+			if (true_path_index)
 			{
 				if (pths[0] == NULL || 1)
 					not_found(args[0], &cmd, args, &path, pths, path_index);
