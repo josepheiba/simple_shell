@@ -1,4 +1,5 @@
 *.bash
 TEST_SUITE
+Simple-shell_test_cases
 vgcore.*
 hsh
