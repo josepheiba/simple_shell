@@ -2,8 +2,8 @@
 
 /**
  * main - check code.
- * argc: variable
- * argv: variable
+ * @argc: variable
+ * @argv: variable
  * Return: check declaration
  */
 
@@ -13,7 +13,8 @@ int main(int argc, char **argv)
 	char *cmd, *path, *tmp, *args[512], *pths[512], *myenviron[512];
 	int process_id, args_index, path_index, true_path_index, file, fd;
 
-	if ((file = argc - 1) == 1)
+	file = argc - 1;
+	if (file == 1)
 	{
 		fd = open(argv[file], O_RDONLY);
 		if (fd == -1)
@@ -23,7 +24,7 @@ int main(int argc, char **argv)
 	environcpy(myenviron);
 	path = args[0] = NULL;
 	pathfinder(&path, environ);
-	
+
 	if (path != NULL)
 	{
 		path_index = token_paths(path, pths);
@@ -42,7 +43,7 @@ int main(int argc, char **argv)
 			free(cmd);
 			continue;
 		}
-		
+
 		if (args[0] == NULL)
 		{
 			free(cmd);
