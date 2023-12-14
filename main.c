@@ -2,7 +2,7 @@
 
 /**
  * main - check code.
- * @argc: variablE
+ * @argc: variable
  * @argv: variable
  * Return: check declaration
  */
