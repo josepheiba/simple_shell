@@ -18,7 +18,7 @@ void environcpy(char **myenviron)
 		{
 			for (k = 0; k < i; k++)
 				free(myenviron[k]);
-			exit(2);
+			exit(0);
 		}
 		_strcpy(myenviron[i], environ[i]);
 		i++;
